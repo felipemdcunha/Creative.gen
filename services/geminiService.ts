@@ -4,7 +4,7 @@ import { urlToBase64 } from "../lib/utils";
 
 // Ensure API Key is available
 const getAI = () => {
-  const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY || '';
+  const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY || '';
   return new GoogleGenAI({ apiKey });
 };
 
@@ -169,8 +169,8 @@ export const generateCreativeImage = async (
   isEditing: boolean = false
 ): Promise<string> => {
   const ai = getAI();
-  // Using gemini-3-pro-image-preview for high fidelity
-  const model = 'gemini-3-pro-image-preview'; 
+  // Using gemini-2.5-flash-image for robustness and avoiding permission restrictions
+  const model = 'gemini-2.5-flash-image'; 
 
   const parts: any[] = [];
 
